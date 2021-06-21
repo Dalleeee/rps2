@@ -1,0 +1,2 @@
+06/21/21
+Initial commit. Created fully functioning rock paper scissors (rps) game played strictly through console for now. Learned about and utilized switch and if statements, functions, return statements, and while loops.
