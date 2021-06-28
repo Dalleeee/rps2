@@ -126,8 +126,3 @@ const scissorsButton = document.querySelector('#scissors');
 scissorsButton.addEventListener('click', function(){
     round('scissors', computerPlay());
 })
-
-if (lossCounter.innerHTML === 5) {
-    alert("Something");
-    console.log("It's working");
-}
