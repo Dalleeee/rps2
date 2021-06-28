@@ -15,76 +15,119 @@ function computerPlay() {
     }
 }
 
+const score = document.querySelector('#score');
+const scoreText = document.createElement('p');
+scoreText.textContent = "Can you take down the computer?";
+let win = 0;
+let loss = 0;
+score.appendChild(scoreText);
+const winCounter = document.getElementById('win');
+const lossCounter = document.getElementById('loss');
+
+
 function round(playerSelection, computerSelection) {
+
     computerSelection = computerPlay();
-    playerSelection = prompt ("Choose your weapon!").toLowerCase();
     switch (playerSelection) {
         case "rock": 
             if (computerSelection === "Rock") {
-                return "Tie";
+                scoreText.textContent = "Tie";
             }
             else if (computerSelection === "Paper") {
-                return "Loss";
+                if (loss <= 4){
+                    lossCounter.innerHTML = ++loss;
+                    scoreText.textContent = "Computer stole it!";
+                }
+                else {
+                    lossCounter.innerHTML = 0;
+                    winCounter.innerHTML = 0;
+                    scoreText.textContent = "You lost. Reload to try again.";
+                }
             }
             else {
-                return "Win";
+                if (win <= 4) {
+                    winCounter.innerHTML = ++win;
+                    scoreText.textContent = "You took that one!";
+                }
+                else {
+                    lossCounter.innerHTML = 0;
+                    winCounter.innerHTML = 0;
+                    scoreText.textContent = "You won it all! Play again by reloading";
+                }
             }
         break;
         case "paper":
             if (computerSelection === "Rock") {
-                return "Win";
+                if (win <= 4) {
+                    winCounter.innerHTML = ++win;
+                    scoreText.textContent = "You took that one!";
+                }
+                else {
+                    lossCounter.innerHTML = 0;
+                    winCounter.innerHTML = 0;
+                    scoreText.textContent = "You won it all! Play again by reloading";
+                }
             }
             else if (computerSelection === "Paper") {
-                return "Tie";
+                scoreText.textContent = "Tie";
             }
             else {
-                return "Loss";
+                if (loss <= 4){
+                    lossCounter.innerHTML = ++loss;
+                    scoreText.textContent = "Computer stole it!";
+                }
+                else {
+                    lossCounter.innerHTML = 0;
+                    winCounter.innerHTML = 0;
+                    scoreText.textContent = "You lost. Reload to try again.";
+                }
             }
         break;
         case "scissors":
             if (computerSelection === "Scissors") {
-                return "Tie";
+                scoreText.textContent = "Tie";
             }
             else if (computerSelection === "Paper") {
-                return "Win";
+                if (win <= 4) {
+                    winCounter.innerHTML = ++win;
+                    scoreText.textContent = "You took that one!";
+                }
+                else {
+                    lossCounter.innerHTML = 0;
+                    winCounter.innerHTML = 0;
+                    scoreText.textContent = "You won it all! Play again by reloading";
+                }
             }
             else {
-                return "Loss";
+                if (loss <= 4){
+                    lossCounter.innerHTML = ++loss;
+                    scoreText.textContent = "Computer stole it!";
+                }
+                else {
+                    lossCounter.innerHTML = 0;
+                    winCounter.innerHTML = 0;
+                    scoreText.textContent = "You lost. Reload to try again.";
+                }
             }
         }
-    }
-    
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    while (playerScore < 5 && computerScore < 5) {
-        let result = round();
-        switch (result) {
-            case "Win": 
-            playerScore++;
-            console.log("You won!")
-            console.log("User score: " + playerScore); 
-            console.log("Computer score: " + computerScore);
-            break;
-            case "Loss":
-            computerScore++;
-            console.log("You lost")
-            console.log("User score: " + playerScore); 
-            console.log("Computer score: " + computerScore);
-            break;
-            case "Tie":
-            console.log("Tie!")
-            console.log("User score: " + playerScore); 
-            console.log("Computer score: " + computerScore);
-    }
-    }
-    if (computerScore === 5) {
-        return "You lost it all!";
-    }
-    else if (playerScore === 5) {
-        return "You won it all!";
-    }
-    else {
-        return "Keep going!";
-    }
+}
+
+const rockButton = document.querySelector('#rock');
+rockButton.addEventListener('click', function(){
+    round('rock', computerPlay());
+})
+
+const paperButton = document.querySelector('#paper');
+paperButton.addEventListener('click', function(){
+    round('paper', computerPlay());
+})
+
+const scissorsButton = document.querySelector('#scissors');
+scissorsButton.addEventListener('click', function(){
+    round('scissors', computerPlay());
+})
+
+if (lossCounter.innerHTML === 5) {
+    alert("Something");
+    console.log("It's working");
 }
