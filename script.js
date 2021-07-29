@@ -1,3 +1,12 @@
+const score = document.querySelector('#score');
+const scoreText = document.createElement('p');
+scoreText.textContent = "Can you take down the computer?";
+let win = 0;
+let loss = 0;
+score.appendChild(scoreText);
+const winCounter = document.getElementById('win');
+const lossCounter = document.getElementById('loss');
+
 function computerPlay() {
     let randomNumber = Math.floor(Math.random() * 3) + 1;
     switch (randomNumber) {
@@ -15,18 +24,7 @@ function computerPlay() {
     }
 }
 
-const score = document.querySelector('#score');
-const scoreText = document.createElement('p');
-scoreText.textContent = "Can you take down the computer?";
-let win = 0;
-let loss = 0;
-score.appendChild(scoreText);
-const winCounter = document.getElementById('win');
-const lossCounter = document.getElementById('loss');
-
-
 function round(playerSelection, computerSelection) {
-
     computerSelection = computerPlay();
     switch (playerSelection) {
         case "rock": 
@@ -126,3 +124,9 @@ const scissorsButton = document.querySelector('#scissors');
 scissorsButton.addEventListener('click', function(){
     round('scissors', computerPlay());
 })
+
+const reset = document.getElementById('reset');
+reset.addEventListener("click", reloadScreen);
+function reloadScreen() {
+    location.reload();
+}
